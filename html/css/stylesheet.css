@@ -1,0 +1,54 @@
+body {
+	margin: 0px;
+}
+#container{background-color:#007D7D;}
+
+#header{width: 90%; margin-left:25px; height: 260px; padding-top: 15px;}
+#logo{padding-top: 10px;  border-radius: 15px; background-color: #FFF;}
+#welcome {float:right; width: 250px; height: 200px; margin-top: 50px; font-weight: bold;}
+#topnav{
+	background-color: #333;
+	border-radius: 7.5px;
+	width: 90%;
+	margin-right: 10px;
+	margin-left: 25px;
+	min-height: 30px;	
+}
+#topnav a {text-decoration: none;}
+#topnav ul {padding-top: 3px;}
+#topnav ul li{display:inline; 
+font-size: 1.25em;
+padding: 0 30px;
+font-style:oblique;
+}
+#topnav a:link{color: #F5EA0A; }
+#topnav a:active{color: #FFF;}
+#topnav a:visited{color: #F5EA0A;}
+#topnav a:focus{color: #F5EA0A;}
+
+#content{
+	background-color: #FFF;
+	width: 90%;
+	border-radius: 7.5px;
+	margin-left: 25px;
+	min-height: 265px;
+}
+#container #content p {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 6px;
+	padding-top: 10px;
+}
+
+
+#footer{
+	background-color: #333;
+	width: 90%;
+	margin-left: 20px;
+	border-radius:15px;
+	text-align:center;
+	min-height: 50px;
+	padding: 5px;
+	color: #F5EA0A;
+}
+
+.logo2 {margin-bottom: 45px; margin-left: 30px;}
