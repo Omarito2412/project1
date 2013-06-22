@@ -18,7 +18,7 @@ if(isset($_GET['s']))
 else
 {
 echo '<p><form action="trade.php" method="GET">
-To get an instant live quote, Please input the desired stock symbol.</br>
+<p>To get an instant live quote, Please input the desired stock symbol.</p></br>
 <input type="text" name="s"/>
 <input type="submit" value="Get Quote"/>
 </form></p>';

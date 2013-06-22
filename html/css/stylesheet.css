@@ -35,10 +35,10 @@ font-style:oblique;
 }
 #container #content p {
 	font-family: Arial, Helvetica, sans-serif;
-	margin: 6px;
+	margin:6px;
 	padding-top: 10px;
 }
-
+#content input {margin-left: 10px; margin-top: 10px;}
 
 #footer{
 	background-color: #333;

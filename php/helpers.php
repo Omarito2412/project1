@@ -16,7 +16,7 @@ echo '</title>
 
 if(isset($_SESSION['auth']))
 {
-    echo '<div id="welcome"><p>Welcome '.$_SESSION['username'].'</p> </div>';
+    echo '<div id="welcome"><p>Welcome '.$_SESSION['username'].'</br><a href="logout.php">Logout</a></p> </div>';
 }
 else
 {
