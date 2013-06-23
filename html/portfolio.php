@@ -5,6 +5,27 @@ renderTop();
 if(isset($_SESSION['auth'])) //Is user logged in?
 {
     //Show him his profile
+    include("../php/config.php"); 
+    echo "<p><h2> Welcome, ".$_SESSION['username']."</h2>";
+    echo "<h3> You currently have $".$_SESSION['balance']." in your account </h3>";
+    $sql = "SELECT * FROM `stocks` where id = ".$_SESSION['id'];
+    $sql2 = "SELECT COUNT(*) from `stocks` where id = ".$_SESSION['id'];
+    $dbh = new PDO("mysql:host=$hostname;dbname=$database",$dbuser,$dbpass);
+    foreach($dbh->query($sql2) as $row)
+    $count = $row;
+    if($count[0] != 0)
+    { 
+        echo "<table border=1><tr><td><strong>Stock Symbol</strong></td><td><strong>Quantity</strong></td> </tr>";
+        foreach($dbh->query($sql) as $row)
+        {
+            echo"<tr><td>".$row['symbol']."</td><td>".$row['quantity']."</td></tr>";
+        }
+        echo '</table>';
+    }
+    else if($count[0] == 0)
+    {
+        echo '<p>You have no stocks, Proceed to <a href="trade.php"> Trade </a> to start buying stocks!</p>';
+    }
 }
 else if(!isset($_POST["username"])) //He isn't logged in nor trying to log in, Show him login form.
 {
@@ -20,17 +41,17 @@ else // He is trying to login.
     //Connect to database and check for provided credentials.
     include("../php/config.php");
     $dbh = new PDO("mysql:host=$hostname;dbname=$database",$dbuser,$dbpass);
-    $user = $_POST['username']; $pass = $_POST['password']; 
+    $user = $_POST['username']; $pass = 'md5("'.$_POST['password'].'")'; 
     $sql = 'SELECT * FROM users where 
     username = '.'"'.$user.'"'.' AND
-    password = '.'"'.$pass.'"';
+    password = '.$pass;
     $query = $dbh->query($sql);
     foreach($query as $row)
     {
    
        if(isset($row['username'])) // The database query returned his account, Thus it exists.
        {
-            $_SESSION['auth'] = 1; $_SESSION['username'] = $row['username']; $_SESSION['balance'] = $row['balance']; //Remember he is logged in using Session
+            $_SESSION['auth'] = 1; $_SESSION['username'] = $row['username']; $_SESSION['balance'] = $row['balance']; $_SESSION['id'] = $row['id']; //Remember he is logged in using Session
             header("Location: portfolio.php");
        }
     }

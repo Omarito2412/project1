@@ -23,5 +23,25 @@ echo '<p><form action="trade.php" method="GET">
 <input type="submit" value="Get Quote"/>
 </form></p>';
 }
+if(isset($_SESSION['auth']))
+{
+    echo '<h2> SELL </h2>';
+    echo '<form method="POST" action="trade.php">
+          <input type="text" name="sell">
+          <input type="submit">
+          </form>';
+    echo '<h2> BUY </h2>';      
+    echo '<form method="POST" action="trade.php">
+          <input type="text name="buy">
+          <input type="submit"></form>';
+}
+if(isset($_POST['sell']))
+{
+    //Start sell transaction
+}
+if(isset($_POST['buy']))
+{
+    //Start buy transaction
+}
 renderBottom();
 ?>
