@@ -1,0 +1,22 @@
+CS75 Finance, For Harvard's CS75 Project 1.
+The only feature I didn't implement was the Email as Username feature, I may implement it later on.
+
+I tried to maintain dynamism as much as possible, That's why I've created php/config.php which has values for Site title, Name, About paragraph, Contact, Database credentials.
+
+php/helpers.php has 3 helper functions, renderTop() which renders the top part of the page and renderBottom which renders the footer and closing tags of the top part, This way the website will be consistent and the change will be only in the part in between.
+Then the getQuote() function which returns a CSV assoc array that has name, price, dates as its indices.
+
+Briefly here's what each page do.
+index.php Just renders top then a small paragraph and renders bottom.
+register.php Will take his input and check if it exists in the database, If it does he won't be added and will be notified that username exists, Else adds him and redirects him to his profile page.
+
+portfolio.php This one does many things, It will first check if he's authenticated, If he isn't then it will be a login page.
+Then it will check if he is trying to login and connect to the database to check if he exists.
+
+trade.php This one is the hardest and the core of the website, It will check if a user is logged in, If he's not logged in it will just show the get quote form, Else it will show the get quote form and the option to buy and sell.
+It checks if $_POST is set and realize wether it was to sell a stock or buy a stock.
+
+Then there are about.php and contact.php which basically echos the string from helpers.php
+
+That's it for project1 my second dynamic website :)
+

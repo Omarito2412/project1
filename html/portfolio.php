@@ -15,10 +15,12 @@ if(isset($_SESSION['auth'])) //Is user logged in?
     $count = $row;
     if($count[0] != 0)
     { 
-        echo "<table border=1><tr><td><strong>Stock Symbol</strong></td><td><strong>Quantity</strong></td> </tr>";
+        echo "<table border=1><tr><td><strong>Stock Symbol</strong></td><td><strong>Quantity</strong></td><td><strong>Current Value</strong></td> </tr>";
         foreach($dbh->query($sql) as $row)
         {
-            echo"<tr><td>".$row['symbol']."</td><td>".$row['quantity']."</td></tr>";
+            $csv = getQuote($row['symbol']);
+            $value = $csv[1] * $row['quantity'];
+            echo"<tr><td>".$row['symbol']."</td><td>".$row['quantity']."</td><td>".$value." </td></tr>";
         }
         echo '</table>';
     }

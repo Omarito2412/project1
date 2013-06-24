@@ -61,5 +61,20 @@ echo '</p>
 
 </html>';
 }
+function getQuote($x) {
+    $x = htmlspecialchars($x);
+    $source = "http://download.finance.yahoo.com/d/quotes.csv?s={$x}&f=sl1d1t1c1ohgv&e=.csv";
+    $handle = fopen($source,'r');
+    if($handle === NULL)
+    echo'<p>Unknown symbol! </p>';
+    else
+    {
+    $csv = fgetcsv($handle,',');
+    }
+    return $csv;
+
+}
+
+
 
 ?>

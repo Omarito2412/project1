@@ -5,16 +5,8 @@ include("../php/config.php");
 renderTop();
 if(isset($_GET['s']))
 {
-    $_GET['s'] = htmlspecialchars($_GET['s']);
-    $source = "http://download.finance.yahoo.com/d/quotes.csv?s={$_GET['s']}&f=sl1d1t1c1ohgv&e=.csv";
-    $handle = fopen($source,'r');
-    if($handle === NULL)
-    echo'<p>Unknown symbol! </p>';
-    else
-    {
-    $csv = fgetcsv($handle,',');
-    echo "<p> 1 Share of $csv[0] = $csv[1] as of $csv[2] at $csv[3]</p>";
-    }
+  $csv = getQuote($_GET['s']);
+  echo "<p> 1 Share of $csv[0] = $csv[1] as of $csv[2] at $csv[3]</p>";
 }
 else
 {
@@ -47,6 +39,12 @@ if(isset($_POST['sell']))
     $csv = fgetcsv($handle,',');
     $price = $csv[1] * $_POST['qtys'];
     $sql1 = "SELECT * FROM `stocks` WHERE id =".$_SESSION['id'];
+    if($qtys <= 0 || !is_int($qtys))
+    {
+        echo 'Invalid input, Quantity must be a positive integer';
+        renderBottom;
+        exit();
+    }
     foreach($dbh->query($sql1) as $row)
     {
        if($row['symbol'] == $_POST['sell'] && $row['quantity'] >= $_POST['qtys'])
@@ -85,6 +83,12 @@ if(isset($_POST['buy']))
     $sql3 = "INSERT INTO `stocks` (`id`, `symbol`,`quantity`) VALUES (".$_SESSION['id'].', "'.$_POST['buy'].'", '.$_POST['qtyb'].")";
     $balance2 = $_SESSION['balance'] - $price;
     $sql4 = "UPDATE `users` SET balance = ".$balance2." WHERE id = ".$_SESSION['id'];
+    if($qtyb <= 0 || !is_int($qtyb))
+    {
+        echo 'Invalid input, Input must be a positive integer';
+        renderBottom();
+        exit();
+    }
     if($_SESSION['balance'] >= $price)
     {
         foreach($dbh->query($sql1) as $row)
