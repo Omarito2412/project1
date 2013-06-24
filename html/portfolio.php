@@ -59,7 +59,7 @@ else // He is trying to login.
     echo '<form method="POST" action="portfolio.php"><ul>
     <li>USERNAME <input type="text" name="username" value="'.$_POST['username'].'"/></li>
     <li>PASSWORD <input type="password" name="password"/></li>
-    <li> <input type="submit" value="Login"/> </li><h4 color="red">Invalid Username/Password, Please enter correct information</h4>  </ul> </form>';
+    <li> <input type="submit" value="Login"/> </li><div id="notification"><h4>Invalid Username/Password, Please enter correct information</h4></div></ul> </form>';
  
 }
 $dbh = NULL;

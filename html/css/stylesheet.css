@@ -40,6 +40,8 @@ font-style:oblique;
 }
 #content input {margin-left: 10px; margin-top: 10px;}
 
+#notification {background-color: #EA7B7B;}
+
 #footer{
 	background-color: #333;
 	width: 90%;

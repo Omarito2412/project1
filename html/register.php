@@ -4,7 +4,7 @@ include ('../php/helpers.php');
 renderTop();
 if(isset($_SESSION['auth'])) // Logged in already!
 {
-    echo '<p> You are already logged in.</p>';
+    echo '<div id="notification"> <p> You are already logged in.</p></div>';
 }
 if(!isset($_POST['username']) && !isset($_SESSION['auth'])) // Didn't post the form and not logged in
 {
@@ -20,7 +20,7 @@ $_POST['password'] = htmlspecialchars($_POST['password']);
         $sql = 'SELECT * FROM users where username ="'.$_POST['username'].'"'; //SQL to check if username already exists
         foreach($dbh->query($sql) as $row) 
         {
-            echo '<form method="POST" action="register.php"><ul><li>USERNAME <input type="text" name="username"></li><li>PASSWORD <input type="password" name="password"></li><li><input type="submit" value="Register"></li></ul></form><h4> Sorry, Username already taken </h4>'; // Username exists, Notify user
+            echo '<form method="POST" action="register.php"><ul><li>USERNAME <input type="text" name="username"></li><li>PASSWORD <input type="password" name="password"></li><li><input type="submit" value="Register"></li></ul></form><div id="notification"><h4> Sorry, Username already taken </h4></div>'; // Username exists, Notify user
         renderBottom();
         exit();
         }

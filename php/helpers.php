@@ -24,7 +24,7 @@ else
 }
 echo '<div id="logo">
 
-<img src="../images/logo.png" width="120" height="208"/><img class="logo2" src="../images/logo2.png" height="115" /></div>
+<img src="../images/logo.png" width="120" height="208"/><img class="logo2" src="../images/logo3.png" height="115" /></div>
 ';
 echo '</div><div id="topnav">
 
